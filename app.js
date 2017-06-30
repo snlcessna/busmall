@@ -3,10 +3,14 @@
 function Image(name, path) {
   this.name = name;
   this.path = path;
+  allImages.push(this);
 
 }
 
-var bag = new Image('bag', 'img/bag.img');
+var allImages = [];
+var displayedImages = [];
+
+var bag = new Image('bag', 'img/bag.jpg');
 var banana = new Image('banana', 'img/banana.jpg');
 var bathroom = new Image('bathroom', 'img/bathroom.jpg');
 var boots = new Image('boots', 'img/boots.jpg');
@@ -27,9 +31,29 @@ var usb = new Image('usb', 'img/usb.gif');
 var watercan = new Image('watercan', 'img/water-can.jpg');
 var wineglass = new Image('wineglass', 'img/wine-glass.jpg');
 
-var allImages = [bag, banana, bathroom, boots, breakfast, bubblegum, chair, cthulhu, dogduck, dragon, pen, petsweep, scissors, shark, sweep, tauntaun, unicorn, usb, watercan, wineglass];
+function showImages() {
+  shuffle();
+  for (var i = 0; i < 3; i++) {
+    for (var x = 0; x < 3; x++) {
+      while (allImages[i] == displayedImages[x]) {
+        shuffle();
+      }//end while
+    }//end for
+  } //end for
 
-function shuffle(allImages) {
+  displayedImages.push(allImages[0]);
+  first.setAttribute('src', allImages[0].path);
+
+  displayedImages.push(allImages[1]);
+  second.setAttribute('src', allImages[1].path);
+
+  displayedImages.push(allImages[2]);
+  third.setAttribute('src', allImages[2].path);
+
+  allImages = [];
+} //end of function
+
+function shuffle() {
   var counter = allImages.length;
   var temp = 0;
   var index = 0;
@@ -48,4 +72,8 @@ function shuffle(allImages) {
   return allImages;
 }
 
-console.log(shuffle(allImages));
+var first = document.getElementById('0');
+var second = document.getElementById('1');
+var third = document.getElementById('2');
+
+showImages();
