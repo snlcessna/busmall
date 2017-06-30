@@ -9,4 +9,4 @@ Marketing Team Member
 2. As a MTM, I also want to keep accurate account of the percentage of times an item was clicked.
 
 Focus Group Participant (FGP)
-1. As a FGP, I want to take my time and give the best answer in an effort to provide valuable feedback to the Marketing Team.
+1. As a FGP, I want to give the best answer in an effort to provide valuable feedback to the Marketing Team.
