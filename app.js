@@ -16,6 +16,7 @@ var allImages = [];
 var displayedImages = [];
 var selectionsRemaining = 25;
 var chartColors = ['black', 'white', 'brown', 'green', 'blue', 'red', 'black', 'white', 'brown', 'green', 'blue', 'red', 'black', 'white', 'brown', 'green', 'blue', 'red', 'black'];
+var moreColors = ['red', 'black', 'white', 'brown', 'green', 'blue', 'red', 'black', 'white', 'brown', 'green', 'blue']
 
 var bag = new Image('bag', 'img/bag.jpg', 'red');
 var banana = new Image('banana', 'img/banana.jpg', 'yellow');
@@ -135,23 +136,33 @@ function drawChart(){
 
   var imageChart = new Chart(context, {
     type: 'bar',
-    data: {
+    data:
+    {
       labels: imageLabels,
-      datasets: [{
+      datasets:
+      [
+        {
         label: '# of Clicks',
         data: imageClicks,
         backgroundColor: chartColors,
-      }]
+      },
+      {
+        label: '# of Displays',
+        data: imageDisplays,
+        backgroundColor: moreColors,
+      },
+    ],
     },
     options: {
       scales: {
         yAxes: [{
           ticks: {
             beginAtZero: true,
-          }
-        }]
-      }
-    }
+          },
+        },
+      ],
+      },
+    },
   });
 
 }
