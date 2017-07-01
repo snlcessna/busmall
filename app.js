@@ -3,18 +3,21 @@
 function Image(name, path) {
   this.name = name;
   this.path = path;
+  this.clicks = 0;
+  this.displays = 0;
   allImages.push(this);
 
 }
 
 var allImages = [];
 var displayedImages = [];
+var selectionsRemaining = 25;
 
 var bag = new Image('bag', 'img/bag.jpg');
 var banana = new Image('banana', 'img/banana.jpg');
 var bathroom = new Image('bathroom', 'img/bathroom.jpg');
 var boots = new Image('boots', 'img/boots.jpg');
-var breakfast = new Image('boots', 'img/breakfast.jpg');
+var breakfast = new Image('breakfast', 'img/breakfast.jpg');
 var bubblegum = new Image('bubblegum', 'img/bubblegum.jpg');
 var chair = new Image('chair', 'img/chair.jpg');
 var cthulhu = new Image('cthulhu', 'img/cthulhu.jpg');
@@ -50,7 +53,10 @@ function showImages() {
   displayedImages.push(allImages[2]);
   third.setAttribute('src', allImages[2].path);
 
-  allImages = [];
+  displayedImages = [];
+  allImages[0].displays++;
+  allImages[1].displays++;
+  allImages[2].displays++;
 } //end of function
 
 function shuffle() {
@@ -58,22 +64,50 @@ function shuffle() {
   var temp = 0;
   var index = 0;
 
-  // While there are elements in the array
-  while (counter--) {
-    // Pick a random index
-    index = (Math.random() * counter) | 0;
+  while (counter--) {  // While there are elements in the array
+    index = (Math.random() * counter) | 0; // Pick a random index
 
-    // And swap the last element with it
     temp = allImages[counter];
     allImages[counter] = allImages[index];
-    allImages[index] = temp;
+    allImages[index] = temp; // And swap the last element with it
   }
 
   return allImages;
 }
 
 var first = document.getElementById('0');
-var second = document.getElementById('1');
-var third = document.getElementById('2');
+first.addEventListener('click', handleClicks);
 
-showImages();
+var second = document.getElementById('1');
+second.addEventListener('click', handleClicks);
+
+var third = document.getElementById('2');
+third.addEventListener('click', handleClicks);
+
+document.getElementById('selections-remaining').innerHTML = (selectionsRemaining);
+
+function handleClicks(event) {
+  selectionsRemaining--;
+  document.getElementById('selections-remaining').innerHTML = (selectionsRemaining);
+
+  if (selectionsRemaining > 0) {
+
+    allImages[event.target.id].clicks++; //increment Click var in the clicked image by 1.
+    showImages(); //Recall function to display three new images.
+    //selectionsRemaining--;
+  } else {
+    finalResults();
+    alert('You are out of clicks');
+    return;
+  }
+}
+
+showImages(); //Initial call to the function.
+
+function finalResults() {
+  allImages.sort(function (a, b) {
+        return b.clicks - a.clicks;
+      });
+}
+
+console.log(allImages);
