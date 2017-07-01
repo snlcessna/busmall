@@ -8,3 +8,7 @@
   weight: 200px;
   margin: 2px 2px 2px 2px;
 }
+
+.hidden {
+  display: none;
+}
