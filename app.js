@@ -16,7 +16,7 @@ var allImages = [];
 var displayedImages = [];
 var selectionsRemaining = 25;
 var chartColors = ['black', 'white', 'brown', 'green', 'blue', 'red', 'black', 'white', 'brown', 'green', 'blue', 'red', 'black', 'white', 'brown', 'green', 'blue', 'red', 'black'];
-var moreColors = ['red', 'black', 'white', 'brown', 'green', 'blue', 'red', 'black', 'white', 'brown', 'green', 'blue']
+var moreColors = ['red', 'black', 'white', 'brown', 'green', 'blue', 'red', 'black', 'white', 'brown', 'green', 'blue'];
 
 var bag = new Image('bag', 'img/bag.jpg', 'red');
 var banana = new Image('banana', 'img/banana.jpg', 'yellow');
