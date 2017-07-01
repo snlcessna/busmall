@@ -3,6 +3,7 @@
   <head>
     <title>BusMall</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
   </head>
   <body>
     <h1>What up, guy? You want to pick from some images for me?</h1>
@@ -15,10 +16,16 @@
     </div>
 
     <div class="show-results">
-    <hr>
+      <hr>
       <h1>Selections Remaining</h1>
       <p id="selections-remaining" /></p>
     </div>
+
+    <div id="chart-div">
+      <hr>
+      <canvas id="image-chart"></canvas>
+    </div>
+
   <script src="app.js" type="text/javascript"></script>
   </body>
 </html>
