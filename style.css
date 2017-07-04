@@ -1,14 +1,23 @@
 
-*, div {
+body {
+  display: block;
   text-align: center;
+  background-color: #BCD8D2;
+}
+
+div {
+  background-color: #BCD8D2;
+  margin: 0px;
+}
+
+.show-results {
+  background-color: #DCB239;
+  color: black;
+  padding-bottom: 0%;
 }
 
 .pics {
   height: 200px;
   weight: 200px;
   margin: 2px 2px 2px 2px;
-}
-
-.hidden {
-  display: none;
 }

@@ -2,6 +2,15 @@
 
 var context = document.getElementById('image-chart').getContext('2d');
 
+if (localStorage.clicks) {
+  var stringifiedData = localStorage.clicks;
+  console.log(stringifiedData);
+
+  imageClicks = JSON.parse(stringifiedData);
+} else {
+  //imageClicks;
+}
+
 function Image(name, path, color) {
   this.name = name;
   this.path = path;
@@ -15,29 +24,29 @@ function Image(name, path, color) {
 var allImages = [];
 var displayedImages = [];
 var selectionsRemaining = 25;
-var chartColors = ['black', 'white', 'brown', 'green', 'blue', 'red', 'black', 'white', 'brown', 'green', 'blue', 'red', 'black', 'white', 'brown', 'green', 'blue', 'red', 'black'];
-var moreColors = ['red', 'black', 'white', 'brown', 'green', 'blue', 'red', 'black', 'white', 'brown', 'green', 'blue']
+var chartColors = ['black', 'orange', 'brown', 'green', 'blue', 'red', 'black', '', 'brown', 'green', 'blue', 'red', 'black', 'orange', 'brown', 'green', 'blue', 'red', 'black'];
+var moreColors = ['red', 'black', 'orange', 'brown', 'green', 'blue', 'red', 'black', 'orange', 'brown', 'green', 'blue', 'red', 'black', 'orange', 'brown', 'green', 'blue', 'red', 'black'];
 
-var bag = new Image('bag', 'img/bag.jpg', 'red');
-var banana = new Image('banana', 'img/banana.jpg', 'yellow');
-var bathroom = new Image('bathroom', 'img/bathroom.jpg', 'brown');
-var boots = new Image('boots', 'img/boots.jpg', 'orange');
-var breakfast = new Image('breakfast', 'img/breakfast.jpg', 'blue');
-var bubblegum = new Image('bubblegum', 'img/bubblegum.jpg', 'purple');
-var chair = new Image('chair', 'img/chair.jpg', 'light-blue');
-var cthulhu = new Image('cthulhu', 'img/cthulhu.jpg', 'green');
-var dogduck = new Image('dogduck', 'img/dog-duck.jpg', 'grey');
-var dragon = new Image('dragon', 'img/dragon.jpg', 'gold');
-var pen = new Image('pen', 'img/pen.jpg', 'red');
-var petsweep = new Image('petsweep', 'img/pet-sweep.jpg', 'yellow');
-var scissors = new Image('scissors', 'img/scissors.jpg', 'brown');
-var shark = new Image('shark', 'img/shark.jpg', 'orange');
-var sweep = new Image('sweep', 'img/sweep.png', 'blue');
-var tauntaun = new Image('tauntaun', 'img/tauntaun.jpg', 'purple');
-var unicorn = new Image('unicorn', 'img/unicorn.jpg', 'light-blue');
-var usb = new Image('usb', 'img/usb.gif', 'green');
-var watercan = new Image('watercan', 'img/water-can.jpg', 'grey');
-var wineglass = new Image('wineglass', 'img/wine-glass.jpg', 'gold');
+var bag = new Image('bag', 'img/bag.jpg');
+var banana = new Image('banana', 'img/banana.jpg');
+var bathroom = new Image('bathroom', 'img/bathroom.jpg');
+var boots = new Image('boots', 'img/boots.jpg');
+var breakfast = new Image('breakfast', 'img/breakfast.jpg');
+var bubblegum = new Image('bubblegum', 'img/bubblegum.jpg');
+var chair = new Image('chair', 'img/chair.jpg');
+var cthulhu = new Image('cthulhu', 'img/cthulhu.jpg');
+var dogduck = new Image('dogduck', 'img/dog-duck.jpg');
+var dragon = new Image('dragon', 'img/dragon.jpg');
+var pen = new Image('pen', 'img/pen.jpg');
+var petsweep = new Image('petsweep', 'img/pet-sweep.jpg');
+var scissors = new Image('scissors', 'img/scissors.jpg');
+var shark = new Image('shark', 'img/shark.jpg');
+var sweep = new Image('sweep', 'img/sweep.png');
+var tauntaun = new Image('tauntaun', 'img/tauntaun.jpg');
+var unicorn = new Image('unicorn', 'img/unicorn.jpg');
+var usb = new Image('usb', 'img/usb.gif');
+var watercan = new Image('watercan', 'img/water-can.jpg');
+var wineglass = new Image('wineglass', 'img/wine-glass.jpg');
 
 function showImages() {
   shuffle();
@@ -99,9 +108,9 @@ function handleClicks(event) {
 
     allImages[event.target.id].clicks++; //increment Click var in the clicked image by 1.
     showImages(); //Recall function to display three new images.
-    //selectionsRemaining--;
+
   } else {
-    finalResults();
+    finalResults();//Prints out data in chart form.
     alert('You are out of clicks');
     return;
   }
@@ -114,6 +123,7 @@ function finalResults() {
         return b.clicks - a.clicks;
       });
   drawChart();
+  saveStatsToLocalStorage(imageClicks);
 }
 
 var imageLabels = [];
@@ -165,4 +175,9 @@ function drawChart(){
     },
   });
 
+}
+
+function saveStatsToLocalStorage(stats){
+  var statsString = JSON.stringify(stats);
+  localStorage.clicks = statsString;
 }
